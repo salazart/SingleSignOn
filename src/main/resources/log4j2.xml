@@ -10,9 +10,6 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger level="info" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
 		<Root level="info">
 			<AppenderRef ref="Console" />
 		</Root>

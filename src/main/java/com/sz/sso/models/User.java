@@ -17,7 +17,7 @@ public class User implements IEntity{
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	private int id;
+	private long id;
 	
 	@Column(name = "firstName")
 	private String firstName;
@@ -28,21 +28,43 @@ public class User implements IEntity{
 	@Column(name = "passHash")
 	private String passHash;
 	
+	@Column(name = "email")
+	private String email;
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public User() {}
 	
-	public User(String firstName, String lastName, String passHash) {
+	public User(String email,  String passHash, String firstName, String lastName) {
 		super();
+		this.email = email;
+		this.passHash = passHash;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.passHash = passHash;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if(object != null && object instanceof User){
+			if(((User)object).getEmail() != null && !((User)object).getEmail().isEmpty()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -19,8 +19,8 @@ import com.sz.sso.models.User;
  * @author Sanya
  *
  */
-public class UserServiceTest {
-	private IGeneralDao<User> userService; 
+public class UserServiceCreateTest {
+	private IGeneralDao<User, Long> userService; 
 	private User user;
 	private User user2;
 	/**
@@ -28,8 +28,8 @@ public class UserServiceTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		user = new User("Alex", "Sydor", "password hash");
-		user2 = new User("Alex2", "Sydor2", "password hash2");
+		user = new User("ssss@sss.com", "password hash", "Alex", "Sydor");
+		user2 = new User("ssss@sss.com", "password hash", "Alex2", "Sydor2");
 		
 		userService = new UserService();
 		userService.create(user);

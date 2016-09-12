@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-	protected static final Logger log = LogManager.getRootLogger();
+	private static final Logger log = LogManager.getRootLogger();
 	
 	private static volatile HibernateUtil instance;
 	private static volatile SessionFactory sessionFactory;

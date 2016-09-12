@@ -1,5 +1,6 @@
 package com.sz.sso.dao.services;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import org.hibernate.SessionFactory;
 import com.sz.sso.dao.interfaces.IEntity;
 import com.sz.sso.dao.interfaces.IGeneralDao;
 
-public class AbstractHibernateDao<T extends IEntity> implements IGeneralDao<T> {
+public class AbstractHibernateDao<T extends IEntity, P extends Serializable> implements IGeneralDao<T,P> {
 	protected static final Logger log = LogManager.getRootLogger();
 
 	protected Class<T> clazz;
@@ -58,6 +59,31 @@ public class AbstractHibernateDao<T extends IEntity> implements IGeneralDao<T> {
 		} catch (Exception e) {
 			log.error(e);
 		}
+	}
+
+	@Override
+	public T get(P id) {
+		T t = null;
+		try (Session session = sessionFactory.openSession();) {
+			session.beginTransaction();
+			t = session.get(clazz, id);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			log.error(e);
+		}
+		return t;
+	}
+
+	@Override
+	public T update(T entity) {
+		try (Session session = sessionFactory.openSession();) {
+			session.beginTransaction();
+			session.merge(entity);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			log.error(e);
+		}
+		return entity;
 	}
 
 }
