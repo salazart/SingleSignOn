@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sz.sso.dao.impl.UserService;
 import com.sz.sso.dao.interfaces.IGeneralDao;
 import com.sz.sso.models.User;
 

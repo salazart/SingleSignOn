@@ -1,30 +1,36 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 
-eclipse {
-      wtp {
-        facet {
-          facet name: 'java', version: '1.8'
-          facet name: 'jst.web', version: '3.1'
-          facet name: 'wst.jsdt.web', version: '1.0'
-        }
-      }
-    }
 
-sourceSets {
-	main.java.srcDir "src/main/java"
-	main.resources.srcDir "src/main/resources"
-	main.java.srcDir "src/test/java"
-	main.java.srcDir "src/main/webapp"
+
+eclipse {
+  wtp {
+  	facet {
+  		//facet name: 'java', version: '1.8'
+    	facet name: 'jst.web', version: '3.1'		// Dynamic Web Application
+    	//facet name: "jst.jsf", version: "2.2"       // Java Server Faces
+    	facet name: 'wst.jsdt.web', version: '1.0'
+  	}
+  	component {
+     	//define context path, default to project folder name
+      	contextPath = 'singlesingon'
+      	classesDeployPath = '/WEB-INF/classes'
+      	libDeployPath = '/WEB-INF/lib'
+      	
+      	resource deployPath: '/', sourcePath: '/src/main/webapp'
+    }
+ }
 }
+
 
 repositories {
     jcenter()
 }
 
 dependencies {
+	
 	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
 
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.4.1'
 	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.4.1'
@@ -33,6 +39,5 @@ dependencies {
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.2.Final'
 
     testCompile 'junit:junit:4.12'
+    runtime 'javax.servlet:javax.servlet-api:3.1.0'
 }
-
-
