@@ -1,7 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+//apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
 
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 eclipse {
   wtp {
@@ -40,4 +44,15 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     runtime 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+//Gretty Embedded Jetty
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
 }
