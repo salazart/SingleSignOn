@@ -1,8 +1,9 @@
-package com.sz.sso.dao.services;
+package com.sz.sso.dao.impl;
 
 import org.hibernate.SessionFactory;
 
 import com.sz.sso.dao.interfaces.IGeneralDao;
+import com.sz.sso.dao.services.AbstractHibernateDao;
 import com.sz.sso.models.User;
 import com.sz.sso.utils.HibernateUtil;
 
