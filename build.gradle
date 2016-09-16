@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
+
 apply plugin: 'war'
-//apply plugin: 'jetty'
 apply plugin: 'org.akhikhl.gretty'
 
 sourceCompatibility = 1.8
@@ -17,7 +17,7 @@ eclipse {
   	}
   	component {
      	//define context path, default to project folder name
-      	contextPath = 'singlesingon'
+      	contextPath = 'singlesignon'
       	classesDeployPath = '/WEB-INF/classes'
       	libDeployPath = '/WEB-INF/lib'
       	
@@ -46,7 +46,7 @@ dependencies {
     runtime 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
-//Gretty Embedded Jetty
+
 buildscript {
   repositories {
     jcenter()
